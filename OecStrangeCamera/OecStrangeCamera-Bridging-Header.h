@@ -12,6 +12,11 @@
 
 @interface ImageProcessing: NSObject
 +(UIImage *)gray:(UIImage *)image;
-// function do detect feature points
 +(UIImage *)orb:(UIImage *)image;
++(UIImage *)laplacian:(UIImage *)image;
++(UIImage *)maskBlue:(UIImage *)image;
++(UIImage *)detect:(UIImage *)image;
++(UIImage *)various:(UIImage *)image;
++(UIImage *)hough:(UIImage *)image;
++(UIImage *)face:(UIImage *)image;
 @end

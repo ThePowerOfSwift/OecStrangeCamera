@@ -26,7 +26,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button contentMode="scaleToFill" semanticContentAttribute="spatial" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="joR-lN-AZx">
-                                <rect key="frame" x="218" y="69" width="101" height="37"/>
+                                <rect key="frame" x="85" y="67" width="77" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
@@ -37,6 +37,34 @@
                                 </state>
                                 <connections>
                                     <action selector="orb:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QRN-II-xSX"/>
+                                </connections>
+                            </button>
+                            <button contentMode="scaleToFill" semanticContentAttribute="spatial" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="lm1-ZU-JDO">
+                                <rect key="frame" x="255" y="67" width="77" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="tintColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <state key="normal" title="Hough変換">
+                                    <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="hough:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YTO-Ga-WSj"/>
+                                </connections>
+                            </button>
+                            <button contentMode="scaleToFill" semanticContentAttribute="spatial" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Spc-A2-CCK">
+                                <rect key="frame" x="339" y="67" width="77" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="tintColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <state key="normal" title="顔検出">
+                                    <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="face:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pNP-yD-iex"/>
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" semanticContentAttribute="spatial" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Doe-BV-11f">
@@ -51,7 +79,7 @@
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" semanticContentAttribute="spatial" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="kT7-4a-jTk">
-                                <rect key="frame" x="91" y="69" width="101" height="37"/>
+                                <rect key="frame" x="0.0" y="67" width="77" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
@@ -64,15 +92,32 @@
                                     <action selector="gray:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C0L-Ia-e1P"/>
                                 </connections>
                             </button>
+                            <button contentMode="scaleToFill" semanticContentAttribute="spatial" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="aND-ay-PaG">
+                                <rect key="frame" x="169" y="67" width="77" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="tintColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <state key="normal" title="Laplacian">
+                                    <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="th:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bOm-36-zSx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="_faceButton" destination="Spc-A2-CCK" id="Tfx-G3-rg3"/>
                         <outlet property="_grayButton" destination="kT7-4a-jTk" id="5Rw-EQ-zVk"/>
+                        <outlet property="_houghButton" destination="lm1-ZU-JDO" id="tFt-8v-Ph2"/>
                         <outlet property="_orbButton" destination="joR-lN-AZx" id="pge-Ji-09w"/>
                         <outlet property="_startButton" destination="Doe-BV-11f" id="fos-qy-EkS"/>
+                        <outlet property="_thButton" destination="aND-ay-PaG" id="qt2-OC-XsI"/>
                         <outlet property="imageView" destination="Zo3-QV-ztf" id="oXB-zg-ndC"/>
                         <outlet property="view" destination="8bC-Xf-vdC" id="rxm-cW-ll9"/>
                     </connections>

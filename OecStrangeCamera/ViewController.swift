@@ -9,7 +9,10 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
     
     @IBOutlet var _orbButton: UIButton!
     @IBOutlet var _grayButton: UIButton!
+    @IBOutlet var _thButton: UIButton!
     @IBOutlet var _startButton: UIButton!
+    @IBOutlet var _houghButton: UIButton!
+    @IBOutlet var _faceButton: UIButton!
     
     var session : AVCaptureSession!
     var device : AVCaptureDevice!
@@ -61,12 +64,42 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
     @IBAction func gray(_ grayButton: UIButton) {
         grayButton.backgroundColor = UIColor.blue
         _orbButton.backgroundColor = UIColor.lightGray
+        _thButton.backgroundColor = UIColor.lightGray
+        _houghButton.backgroundColor = UIColor.lightGray
+        _faceButton.backgroundColor = UIColor.lightGray
         self.mode=1;
     }
     @IBAction func orb(_ orbButton: UIButton) {
         orbButton.backgroundColor = UIColor.blue
         _grayButton.backgroundColor = UIColor.lightGray
+        _thButton.backgroundColor = UIColor.lightGray
+        _houghButton.backgroundColor = UIColor.lightGray
+        _faceButton.backgroundColor = UIColor.lightGray
         self.mode=0;
+    }
+    @IBAction func th(_ thButton: UIButton) {
+        thButton.backgroundColor = UIColor.blue
+        _orbButton.backgroundColor = UIColor.lightGray
+        _grayButton.backgroundColor = UIColor.lightGray
+        _houghButton.backgroundColor = UIColor.lightGray
+        _faceButton.backgroundColor = UIColor.lightGray
+        self.mode=2;
+    }
+    @IBAction func hough(_ houghButton: UIButton) {
+        houghButton.backgroundColor = UIColor.blue
+        _thButton.backgroundColor = UIColor.lightGray
+        _orbButton.backgroundColor = UIColor.lightGray
+        _grayButton.backgroundColor = UIColor.lightGray
+        _faceButton.backgroundColor = UIColor.lightGray
+        self.mode=3;
+    }
+    @IBAction func face(_ faceButton: UIButton) {
+        faceButton.backgroundColor = UIColor.blue
+        _houghButton.backgroundColor = UIColor.lightGray
+        _thButton.backgroundColor = UIColor.lightGray
+        _orbButton.backgroundColor = UIColor.lightGray
+        _grayButton.backgroundColor = UIColor.lightGray
+        self.mode=4;
     }
     func initCamera() -> Bool {
         session = AVCaptureSession()
@@ -131,6 +164,15 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
                 self.imageView.image = image;
             }else if(self.mode==1){
                 let image: UIImage = CameraUtil.imageForGray(buffer: sampleBuffer)
+                self.imageView.image = image;
+            }else if(self.mode==2){
+                let image: UIImage = CameraUtil.imageForLaplacian(buffer: sampleBuffer)
+                self.imageView.image = image;
+            }else if(self.mode==3){
+                let image: UIImage = CameraUtil.imageForHough(buffer: sampleBuffer)
+                self.imageView.image = image;
+            }else if(self.mode==4){
+                let image: UIImage = CameraUtil.imageForFace(buffer: sampleBuffer)
                 self.imageView.image = image;
             }
             

@@ -15,6 +15,8 @@
 		867B608F1E1C973400855B2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 867B608D1E1C973400855B2D /* LaunchScreen.storyboard */; };
 		867B609A1E1C973400855B2D /* OecStrangeCameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867B60991E1C973400855B2D /* OecStrangeCameraTests.swift */; };
 		867B60A51E1C973400855B2D /* OecStrangeCameraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867B60A41E1C973400855B2D /* OecStrangeCameraUITests.swift */; };
+		868FCFE11E1D41990026C4CB /* haarcascade_frontalface_alt.xml in Resources */ = {isa = PBXBuildFile; fileRef = 868FCFE01E1D41990026C4CB /* haarcascade_frontalface_alt.xml */; };
+		868FCFE31E1D43130026C4CB /* haarcascade_eye.xml in Resources */ = {isa = PBXBuildFile; fileRef = 868FCFE21E1D43130026C4CB /* haarcascade_eye.xml */; };
 		86A08E891E1C97E5001C295F /* ImageProcessing.mm in Sources */ = {isa = PBXBuildFile; fileRef = 86A08E841E1C97E5001C295F /* ImageProcessing.mm */; };
 		86A08E8A1E1C97E5001C295F /* CameraUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A08E861E1C97E5001C295F /* CameraUtil.swift */; };
 		86A08E8B1E1C97E5001C295F /* OpenCVHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 86A08E871E1C97E5001C295F /* OpenCVHelper.mm */; };
@@ -54,6 +56,8 @@
 		867B60A01E1C973400855B2D /* OecStrangeCameraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OecStrangeCameraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		867B60A41E1C973400855B2D /* OecStrangeCameraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OecStrangeCameraUITests.swift; sourceTree = "<group>"; };
 		867B60A61E1C973400855B2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		868FCFE01E1D41990026C4CB /* haarcascade_frontalface_alt.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt.xml; sourceTree = "<group>"; };
+		868FCFE21E1D43130026C4CB /* haarcascade_eye.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_eye.xml; sourceTree = "<group>"; };
 		86A08E831E1C97E4001C295F /* OecStrangeCamera-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OecStrangeCamera-Bridging-Header.h"; sourceTree = "<group>"; };
 		86A08E841E1C97E5001C295F /* ImageProcessing.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageProcessing.mm; sourceTree = "<group>"; };
 		86A08E861E1C97E5001C295F /* CameraUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraUtil.swift; sourceTree = "<group>"; };
@@ -120,6 +124,8 @@
 		867B60831E1C973400855B2D /* OecStrangeCamera */ = {
 			isa = PBXGroup;
 			children = (
+				868FCFE21E1D43130026C4CB /* haarcascade_eye.xml */,
+				868FCFE01E1D41990026C4CB /* haarcascade_frontalface_alt.xml */,
 				86A08E841E1C97E5001C295F /* ImageProcessing.mm */,
 				86A08E861E1C97E5001C295F /* CameraUtil.swift */,
 				86A08E871E1C97E5001C295F /* OpenCVHelper.mm */,
@@ -278,6 +284,8 @@
 			files = (
 				867B608F1E1C973400855B2D /* LaunchScreen.storyboard in Resources */,
 				867B608C1E1C973400855B2D /* Assets.xcassets in Resources */,
+				868FCFE11E1D41990026C4CB /* haarcascade_frontalface_alt.xml in Resources */,
+				868FCFE31E1D43130026C4CB /* haarcascade_eye.xml in Resources */,
 				867B608A1E1C973400855B2D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
