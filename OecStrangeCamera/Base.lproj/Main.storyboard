@@ -92,6 +92,20 @@
                                     <action selector="gray:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C0L-Ia-e1P"/>
                                 </connections>
                             </button>
+                            <button contentMode="scaleToFill" semanticContentAttribute="spatial" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="x8S-wM-AUI">
+                                <rect key="frame" x="0.0" y="112" width="77" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="tintColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <state key="normal" title="赤信号">
+                                    <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="signalStop:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7kb-77-nq7"/>
+                                </connections>
+                            </button>
                             <button contentMode="scaleToFill" semanticContentAttribute="spatial" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="aND-ay-PaG">
                                 <rect key="frame" x="169" y="67" width="77" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -106,16 +120,32 @@
                                     <action selector="th:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bOm-36-zSx"/>
                                 </connections>
                             </button>
+                            <button contentMode="scaleToFill" semanticContentAttribute="spatial" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="8Hp-XW-YeL">
+                                <rect key="frame" x="85" y="111" width="77" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="tintColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <state key="normal" title="車検出">
+                                    <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="car:" destination="BYZ-38-t0r" eventType="touchUpInside" id="glq-nW-7Ui"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="_carButton" destination="8Hp-XW-YeL" id="aIE-RQ-rsg"/>
                         <outlet property="_faceButton" destination="Spc-A2-CCK" id="Tfx-G3-rg3"/>
                         <outlet property="_grayButton" destination="kT7-4a-jTk" id="5Rw-EQ-zVk"/>
                         <outlet property="_houghButton" destination="lm1-ZU-JDO" id="tFt-8v-Ph2"/>
                         <outlet property="_orbButton" destination="joR-lN-AZx" id="pge-Ji-09w"/>
+                        <outlet property="_signalStopButton" destination="x8S-wM-AUI" id="5JZ-aH-YJd"/>
                         <outlet property="_startButton" destination="Doe-BV-11f" id="fos-qy-EkS"/>
                         <outlet property="_thButton" destination="aND-ay-PaG" id="qt2-OC-XsI"/>
                         <outlet property="imageView" destination="Zo3-QV-ztf" id="oXB-zg-ndC"/>

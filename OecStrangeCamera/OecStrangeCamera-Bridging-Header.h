@@ -14,9 +14,8 @@
 +(UIImage *)gray:(UIImage *)image;
 +(UIImage *)orb:(UIImage *)image;
 +(UIImage *)laplacian:(UIImage *)image;
-+(UIImage *)maskBlue:(UIImage *)image;
-+(UIImage *)detect:(UIImage *)image;
-+(UIImage *)various:(UIImage *)image;
 +(UIImage *)hough:(UIImage *)image;
 +(UIImage *)face:(UIImage *)image;
++(UIImage *)signalStop:(UIImage *)image;
++(UIImage *)carDetect:(UIImage *)image;
 @end

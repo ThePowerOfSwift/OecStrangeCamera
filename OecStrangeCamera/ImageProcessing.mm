@@ -114,23 +114,13 @@
         return nil;
     }
     std::vector<cv::Rect> faces;
-    /// マルチスケール（顔）探索
+
     // 画像，出力矩形，縮小スケール，最低矩形数，（フラグ），最小矩形
     cascade.detectMultiScale(smallImg, faces,
                              1.1, 2,
                              CV_HAAR_SCALE_IMAGE,
                              cv::Size(30, 30) );
     
-//    NSString *nested_cascadeName = @"haarcascade_eye.xml";
-//    NSString *nested_cascadeName_path_resource = [[NSBundle mainBundle] pathForResource:nested_cascadeName
-//                                                     ofType:nil];
-//    std::string nested_cascadeName_path = (char *)[nested_cascadeName_path_resource UTF8String];
-//    cv::CascadeClassifier nested_cascade;
-//    if (!nested_cascade.load(nested_cascadeName_path)) {
-//        
-//        NSLog(@"Couldn't load haar nested cascade file.");
-//        return nil;
-//    }
     std::vector<cv::Rect>::const_iterator r = faces.begin();
     for(; r != faces.end(); ++r) {
         
@@ -142,83 +132,100 @@
         face_radius = cv::saturate_cast<int>((r->width + r->height)*0.25*scale);
         cv::circle( mat, face_center, face_radius, cv::Scalar(80,80,255), 3, 8, 0 );
         
-        
-//        cv:: Mat smallImgROI = smallImg(*r);
-//        std::vector<cv::Rect> nestedObjects;
-//        /// マルチスケール（目）探索
-//        // 画像，出力矩形，縮小スケール，最低矩形数，（フラグ），最小矩形
-//        nested_cascade.detectMultiScale(smallImgROI, nestedObjects,
-//                                        1.1, 3,
-//                                        CV_HAAR_SCALE_IMAGE,
-//                                        cv::Size(10,10));
-//        
-//        
-//        // 検出結果（目）の描画
-//        std::vector<cv::Rect>::const_iterator nr = nestedObjects.begin();
-//        for(; nr != nestedObjects.end(); ++nr) {
-//            cv::Point center;
-//            int radius;
-//            center.x = cv::saturate_cast<int>((r->x + nr->x + nr->width*0.5)*scale);
-//            center.y = cv::saturate_cast<int>((r->y + nr->y + nr->height*0.5)*scale);
-//            radius = cv::saturate_cast<int>((nr->width + nr->height)*0.25*scale);
-//            cv::circle( mat, center, radius, cv::Scalar(80,255,80), 3, 8, 0 );
-//        }
     }
     
     return [OpenCVHelper UIImageFromCVMat:mat];
 }
-+ (UIImage *)maskBlue:(UIImage *)image
++ (UIImage *)signalStop:(UIImage *)image
 {
     cv::Mat mat;
     UIImageToMat(image, mat);
-    cv::Mat dst;
     
-    // グレイスケール変換
-    cv::Mat gray;
-    cv::cvtColor(mat, gray, CV_BGR2GRAY);
+    double scale = 2.0;
+    cv::Mat gray, smallImg(cv::saturate_cast<int>(mat.rows/scale), cv::saturate_cast<int>(mat.cols/scale), CV_8UC1);
     
-    // Set threshold and maxValue
-    double thresh = 105;
-    double maxValue = 255;
+    cv::cvtColor(mat, gray, CV_BGR2HSV);
+    // 処理時間短縮のために画像を縮小
+    cv::resize(gray, smallImg, smallImg.size(), 0, 0, cv::INTER_LINEAR);
+ 
+    // 分類器の読み込み
+    NSString *cascadeName = @"haarcascade_stop.xml";
+    NSString *path = [[NSBundle mainBundle] pathForResource:cascadeName
+                                                     ofType:nil];
+    std::string cascade_path = (char *)[path UTF8String];
+    cv::CascadeClassifier cascade;
+    if (!cascade.load(cascade_path)) {
+        NSLog(@"Couldn't load haar cascade file.");
+        return nil;
+    }
+    std::vector<cv::Rect> stops;
     
-    // Binary Threshold
-    threshold(mat,dst, thresh, maxValue, cv::THRESH_BINARY);
-    return [OpenCVHelper UIImageFromCVMat:dst];
+    // 画像，出力矩形，縮小スケール，最低矩形数，（フラグ），最小矩形
+    cascade.detectMultiScale(smallImg, stops,
+                             1.1, 2,
+                             CV_HAAR_SCALE_IMAGE,
+                             cv::Size(30, 30) );
+    
+    std::vector<cv::Rect>::const_iterator r = stops.begin();
+    for(; r != stops.end(); ++r) {
+        
+        // 検出結果の描画
+        cv::Point stop_center;
+        int stop_radius;
+        stop_center.x = cv::saturate_cast<int>((r->x + r->width*0.5)*scale);
+        stop_center.y = cv::saturate_cast<int>((r->y + r->height*0.5)*scale);
+        stop_radius = cv::saturate_cast<int>((r->width + r->height)*0.25*scale);
+        cv::circle( mat, stop_center, stop_radius, cv::Scalar(80,80,255), 3, 8, 0 );
+        
+    }
+    
+    return [OpenCVHelper UIImageFromCVMat:mat];
 }
-+ (UIImage *)detect:(UIImage *)image
++ (UIImage *)carDetect:(UIImage *)image
 {
     cv::Mat mat;
     UIImageToMat(image, mat);
-    cv::Mat dst;
     
-    // グレイスケール変換
-    cv::Mat gray;
+    double scale = 2.0;
+    cv::Mat gray, smallImg(cv::saturate_cast<int>(mat.rows/scale), cv::saturate_cast<int>(mat.cols/scale), CV_8UC1);
+    // グレースケール画像に変換
     cv::cvtColor(mat, gray, CV_BGR2GRAY);
+    // 処理時間短縮のために画像を縮小
+    cv::resize(gray, smallImg, smallImg.size(), 0, 0, cv::INTER_LINEAR);
+    cv::equalizeHist( smallImg, smallImg);
     
-    // Set threshold and maxValue
-    double thresh = 105;
-    double maxValue = 255;
+    // 分類器の読み込み
+    NSString *cascadeName = @"car3.xml";
+    NSString *path = [[NSBundle mainBundle] pathForResource:cascadeName
+                                                     ofType:nil];
+    std::string cascade_path = (char *)[path UTF8String];
+    cv::CascadeClassifier cascade;
+    if (!cascade.load(cascade_path)) {
+        NSLog(@"Couldn't load haar cascade file.");
+        return nil;
+    }
+    std::vector<cv::Rect> faces;
     
-    // Binary Threshold
-    threshold(mat,dst, thresh, maxValue, cv::THRESH_BINARY);
-    return [OpenCVHelper UIImageFromCVMat:dst];
+    // 画像，出力矩形，縮小スケール，最低矩形数，（フラグ），最小矩形
+    cascade.detectMultiScale(smallImg, faces,
+                             1.1, 2,
+                             CV_HAAR_SCALE_IMAGE,
+                             cv::Size(30, 30) );
+    
+    std::vector<cv::Rect>::const_iterator r = faces.begin();
+    for(; r != faces.end(); ++r) {
+        
+        // 検出結果（顔）の描画
+        cv::Point face_center;
+        int face_radius;
+        face_center.x = cv::saturate_cast<int>((r->x + r->width*0.5)*scale);
+        face_center.y = cv::saturate_cast<int>((r->y + r->height*0.5)*scale);
+        face_radius = cv::saturate_cast<int>((r->width + r->height)*0.25*scale);
+        cv::circle( mat, face_center, face_radius, cv::Scalar(80,80,255), 3, 8, 0 );
+        
+    }
+    
+    return [OpenCVHelper UIImageFromCVMat:mat];
 }
-+ (UIImage *)various:(UIImage *)image
-{
-    cv::Mat mat;
-    UIImageToMat(image, mat);
-    cv::Mat dst;
-    
-    // グレイスケール変換
-    cv::Mat gray;
-    cv::cvtColor(mat, gray, CV_BGR2GRAY);
-    
-    // Set threshold and maxValue
-    double thresh = 105;
-    double maxValue = 255;
-    
-    // Binary Threshold
-    threshold(mat,dst, thresh, maxValue, cv::THRESH_BINARY);
-    return [OpenCVHelper UIImageFromCVMat:dst];
-}
+
 @end

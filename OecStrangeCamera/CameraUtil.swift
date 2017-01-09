@@ -25,6 +25,14 @@ class CameraUtil {
         let resultImage: UIImage = ImageProcessing.face(initImage(buffer: buffer))
         return resultImage
     }
+    class func imageForSignalStop(buffer: CMSampleBuffer) -> UIImage {
+        let resultImage: UIImage = ImageProcessing.signalStop(initImage(buffer: buffer))
+        return resultImage
+    }
+    class func imageForCarDetect(buffer: CMSampleBuffer) -> UIImage {
+        let resultImage: UIImage = ImageProcessing.carDetect(initImage(buffer: buffer))
+        return resultImage
+    }
     
     class func initImage(buffer: CMSampleBuffer) -> UIImage {
         let pixelBuffer: CVImageBuffer = CMSampleBufferGetImageBuffer(buffer)!
